@@ -5,6 +5,7 @@ name: 自动测试
 on:
   push:
     branches: [ main ]
+  workflow_dispatch:    # ← 添加这一行，允许手动触发
 
 # 定义一个叫 test 的作业
 jobs:
