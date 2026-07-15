@@ -1,0 +1,29 @@
+# 工作流的名字，会显示在 GitHub 的 Actions 页面上
+name: 自动测试
+
+# 触发条件：当代码被推送到 main 分支时，自动执行
+on:
+  push:
+    branches: [ main ]
+
+# 定义一个叫 test 的作业
+jobs:
+  test:
+    # 使用 Ubuntu 最新版本来运行
+    runs-on: ubuntu-latest
+    
+    # 具体要执行的步骤
+    steps:
+      # 步骤1：把我们的代码下载到虚拟机上
+      - name: 签出代码
+        uses: actions/checkout@v4
+
+      # 步骤2：安装 Node.js 环境
+      - name: 设置 Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '20'  # 指定 Node.js 版本
+
+      # 步骤3：运行测试脚本
+      - name: 运行测试
+        run: node add.test.js
